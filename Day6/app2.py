@@ -1,11 +1,16 @@
 import streamlit as st 
-st.title("make as simple calculator app")
-num1 = st.number_input("Enter first number ")
-num2 = st.number_input('Enter second number')
 
+st.title("Simple Calculator App")
 
-operation = st.selectbox("Choose any operation: ", ["add", "subtract", "multiply", "divide"])
+# Input numbers
+num1 = st.number_input("Enter first number", value=0.0)
+num2 = st.number_input("Enter second number", value=0.0)
+
+# Operation selection - Matches the IF statements below
+operation = st.selectbox("Choose an operation:", ["Add", "Subtract", "Multiply", "Divide"])
+
 result = 0
+
 if operation == 'Add':
     result = num1 + num2
 elif operation == 'Subtract':
@@ -16,7 +21,8 @@ elif operation == 'Divide':
     if num2 != 0:
         result = num1 / num2
     else:
-        st.warning("Cannot divide by zero!") # Shows a warning for division by zero
+        st.error("Cannot divide by zero!") 
         result = "Undefined"
 
-st.write('result', result)
+# Display the result formatted nicely
+st.subheader(f"Result: {result}")
